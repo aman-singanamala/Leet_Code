@@ -40,17 +40,73 @@ class Solution
     public static boolean isAnagram(String a,String b)
     {
         
-        // Your code here
-        char[] A= a.toCharArray();
-        char[] B= b.toCharArray();
-        if(A.length!=B.length){
+        // // Your code here
+        // char[] A= a.toCharArray();
+        // char[] B= b.toCharArray();
+        // if(A.length!=B.length){
+        //     return false;
+        // }
+        
+        // Arrays.sort(A);
+        // Arrays.sort(B);
+        
+        // return Arrays.equals(A,B);
+        
+        
+        if(a.length()!=b.length()){
             return false;
         }
         
-        Arrays.sort(A);
-        Arrays.sort(B);
+        // int[] charCount= new int[26];
         
-        return Arrays.equals(A,B);
+        // for(int i=0;i<a.length();i++){
+        //     charCount[a.charAt(i)-'a']++;
+        // }
+        
+        // for(int i=0;i<b.length();i++){
+        //     charCount[b.charAt(i)-'a']--;
+        // }
+        
+        // for(int count : charCount){
+        //     if(count!=0){
+        //         return false;
+        //     }
+        // }
+        // return true;
+        
+        if (a.length() != b.length()) {
+            return false;
+        }
+
+        Map<Character, Integer> charCount = new HashMap<>();
+
+        // Increment character count for string 'a'
+        for (char c : a.toCharArray()) {
+            if (charCount.containsKey(c)) {
+                charCount.put(c, charCount.get(c) + 1);
+            } else {
+                charCount.put(c, 1);
+            }
+        }
+
+        // Decrement character count for string 'b'
+        for (char c : b.toCharArray()) {
+            if (!charCount.containsKey(c)) {
+                return false;
+            }
+
+            int count = charCount.get(c);
+            if (count == 0) {
+                return false;
+            }
+
+            charCount.put(c, count - 1);
+        }
+
+        return true;
+        
+        
+        
         
     }
 }
