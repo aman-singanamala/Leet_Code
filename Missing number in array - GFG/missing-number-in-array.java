@@ -29,14 +29,26 @@ class GFG {
 
 class Solution {
     int missingNumber(int array[], int n) {
-        // Your Code Here
-        int sum= n*(n+1)/2;
-        int as=0;
+        // // Your Code Here
+        // int sum= n*(n+1)/2;
+        // int as=0;
         
-        for(int i=0;i<array.length;i++){
-            as= as+array[i];
+        // for(int i=0;i<array.length;i++){
+        //     as= as+array[i];
+        // }
+        
+        // return sum-as;
+        
+        int totalXor = 0;
+        int arrayXor = 0;
+        for (int i = 1; i <= n; i++) {
+            totalXor ^= i;
         }
         
-        return sum-as;
+        for (int num : array) {
+            arrayXor ^= num;
+        }
+        
+        return totalXor ^ arrayXor;
     }
 }
