@@ -117,22 +117,19 @@ public class Solution
 {
     //Function to check whether a Binary Tree is BST or not.
     boolean isBST(Node root) {
-        return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return isBSTHELPER(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
     
     // Utility function to check if a binary tree satisfies the BST property.
-    boolean isBSTUtil(Node node, int min, int max) {
-        // If the node is null, it satisfies the BST property.
-        if (node == null) {
+    boolean isBSTHELPER(Node root, int min, int max){
+        if(root==null){
             return true;
         }
         
-        // If the node's value is outside the valid range, it violates the BST property.
-        if (node.data < min || node.data > max) {
+        if(root.data<=min || root.data>=max){
             return false;
         }
         
-        // Recursively check the left and right subtrees, updating the range of valid values.
-        return isBSTUtil(node.left, min, node.data - 1) && isBSTUtil(node.right, node.data + 1, max);
+        return isBSTHELPER(root.left, min, root.data) && isBSTHELPER(root.right, root.data, max);
     }
 }
