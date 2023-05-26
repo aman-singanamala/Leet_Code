@@ -27,18 +27,47 @@ class GFG
 
 class Solution{
     int longestUniqueSubsttr(String s){
-        int maxLength = 0;
-        int start = 0;
-        HashMap<Character, Integer> charMap = new HashMap<>();
+        // int max=0;
+        // for(int i=0;i<s.length();i++){
+        //     for(int j=i+1;j<=s.length();j++){
+        //         if(allUnique(s, i,j)){
+        //             max= Math.max(max, j-i);
+        //         }
+        //     }
+        // }
+        // return max;
         
-        for (int end = 0; end < s.length(); end++) {
-            if (charMap.containsKey(s.charAt(end))) {
-                start = Math.max(start, charMap.get(s.charAt(end)) + 1);
+        int maxlength=Integer.MIN_VALUE;
+        int start=0;
+        int end=0;
+        HashSet<Character> set= new HashSet<>();
+        while(end<s.length()){
+            if(!set.contains(s.charAt(end))){
+                set.add(s.charAt(end));
+                maxlength= Math.max(maxlength, end-start+1);
+                end++;
+            }else{
+                set.remove(s.charAt(start));
+                start++;
             }
-            charMap.put(s.charAt(end), end);
-            maxLength = Math.max(maxLength, end - start + 1);
+            
         }
+        return maxlength;
         
-        return maxLength;
     }
+    
+    // boolean allUnique(String s, int start, int end){
+    //     HashSet<Character> set= new HashSet<>();
+        
+    //     for(int i=start;i<end;i++){
+    //         char ch = s.charAt(i);
+    //         if(set.contains(ch)){
+    //             return false;
+    //         }
+    //         set.add(ch);
+            
+    //     }
+        
+    //     return true;
+    // }
 }
