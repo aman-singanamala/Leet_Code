@@ -42,35 +42,35 @@ class Solution
     public boolean findPair(int arr[], int size, int n)
     {
         //code here.
-        // for(int i=0;i<size;i++){
-        //     for(int j=i+1;j<size;j++){
-        //         if(Math.abs(arr[i]-arr[j])==n){
-        //             return true;
-        //         }
-        //     }
-        // }
-        // return false;
-        
-        Arrays.sort(arr);
-        
-        for(int i=0;i<arr.length;i++){
-            int x= arr[i]+n;
-            int left= i+1;
-            int right= size-1;
-            
-            while(left<=right){
-                int mid= left+(right-left)/2;
-                
-                if(arr[mid]==x){
+        for(int i=0;i<size;i++){
+            for(int j=i+1;j<size;j++){
+                if(Math.abs(arr[i]-arr[j])==n){
                     return true;
-                }
-                else if(arr[mid]<x){
-                    left=mid+1;
-                }else{
-                    right=mid-1;
                 }
             }
         }
         return false;
+        
+        // Arrays.sort(arr);
+        
+        // for(int i=0;i<arr.length;i++){
+        //     int x= arr[i]+n;
+        //     int left= i+1;
+        //     int right= size-1;
+            
+        //     while(left<=right){
+        //         int mid= left+(right-left)/2;
+                
+        //         if(arr[mid]==x){
+        //             return true;
+        //         }
+        //         else if(arr[mid]<x){
+        //             left=mid+1;
+        //         }else{
+        //             right=mid-1;
+        //         }
+        //     }
+        // }
+        // return false;
     }
 }
