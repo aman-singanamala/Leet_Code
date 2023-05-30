@@ -47,28 +47,20 @@ class Solution
     //Function to count the number of possible triangles.
     static int findNumberOfTriangles(int arr[], int n)
     {
-        // code here
-         // Sort the array in ascending order
         Arrays.sort(arr);
-        
-        // Initialize count of triangles
-        int count = 0;
-        
-        // Fix the first element and find other two
-        for (int i = 0; i < n - 2; i++) {
-            int k = i + 2;
-            
-            // Find the rightmost element which can form a triangle with the fixed element
-            for (int j = i + 1; j < n; j++) {
-                while (k < n && arr[i] + arr[j] > arr[k])
-                    k++;
-                
-                // The number of triangles that can be formed with the current fixed element is the difference between
-                // the index of the rightmost element and the second element
-                count += k - j - 1;
+        int count=0;
+        for(int i= n-1;i>=2;i--){
+            int left=0;
+            int right=i-1;
+            while(left<right){
+                if(arr[left]+arr[right]>arr[i]){
+                    count+= right-left;
+                    right--;
+                }else{
+                    left++;
+                }
             }
         }
-        
         return count;
     }
 }
