@@ -13,10 +13,20 @@ class Solution
     public static void sort012(int a[], int n)
     {
         // code here 
-        Arrays.sort(a);
-        // for(int num: a){
-        //     System.out.print(num+" ");
-        // }
+        // Arrays.sort(a);
+        int[]  count= new int[3];
+        for(int i=0;i<n;i++){
+            count[a[i]]++;
+        }
+        
+        int index=0;
+        for(int i=0;i<count.length;i++){
+            while(count[i]>0){
+                a[index++]=i;
+                count[i]--;
+            }
+        }
+       
     }
 }
 
