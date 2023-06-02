@@ -56,17 +56,48 @@ class Solution
     static ArrayList <Integer> max_of_subarrays(int arr[], int n, int k)
     {
         // Your code here
-        ArrayList<Integer> result= new ArrayList<Integer>();
+        // ArrayList<Integer> result= new ArrayList<Integer>();
         
-        for(int i=0;i<=n-k;i++){
-            int currmax= Integer.MIN_VALUE;
-            for(int j=i;j<i+k;j++){
-                currmax= Math.max(currmax, arr[j]);
-            }
-            result.add(currmax);
+        // for(int i=0;i<=n-k;i++){
+        //     int currmax= Integer.MIN_VALUE;
+        //     for(int j=i;j<i+k;j++){
+        //         currmax= Math.max(currmax, arr[j]);
+        //     }
+        //     result.add(currmax);
+        // }
+        
+        // return result;
+        ArrayList<Integer> ans= new ArrayList<>();
+        int wm= 0;
+        
+        for(int i=0;i<k;i++){
+            wm= Math.max(wm, arr[i]);    
         }
         
-        return result;
+        ans.add(wm);
+        
+        
+        for(int i=k;i<n;i++){
+            int left= arr[i-k]; // element going out of the window
+            int right=arr[i] ;// new element in the window
+            
+            if(left==wm){
+                wm=right;
+                int j=i-k+1;
+                while(j<=i){
+                    wm= Math.max(wm, arr[j]);
+                    j++;
+                }
+            }
+            else{
+                wm= Math.max(wm, right);
+            }
+            
+            ans.add(wm);
+            
+        }
+        
+        return ans;
         
     }
 }
