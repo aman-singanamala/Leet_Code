@@ -37,20 +37,22 @@ class Solution{
         // }
         // return max;
         
-        int maxlength=Integer.MIN_VALUE;
-        int start=0;
-        int end=0;
-        HashSet<Character> set= new HashSet<>();
-        while(end<s.length()){
-            if(!set.contains(s.charAt(end))){
-                set.add(s.charAt(end));
-                maxlength= Math.max(maxlength, end-start+1);
+         int start = 0;
+        int end = 0;
+        int n = s.length();
+        int maxlength = 0;
+        Set<Character> set = new HashSet<>();
+        while (end < n) {
+            char ch = s.charAt(end);
+            if (!set.contains(ch)) {
+                set.add(ch);
+                maxlength = Math.max(maxlength, end - start + 1);
                 end++;
-            }else{
+            } else {
                 set.remove(s.charAt(start));
                 start++;
+
             }
-            
         }
         return maxlength;
         
