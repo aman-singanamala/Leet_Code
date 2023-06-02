@@ -126,41 +126,59 @@ class Node{
 class Solution
 {
     // returns the inorder successor of the Node x in BST (rooted at 'root')
-    	public Node inorderSuccessor(Node root, Node x) {
-    ArrayList<Node> ans = inorder(root);
-    int index = -1;
-    for (int i = 0; i < ans.size(); i++) {
-        if (ans.get(i) == x) {
-            index = i;
-            break;
+//     public Node inorderSuccessor(Node root, Node x) {
+    //     ArrayList<Node> ans = inorder(root);
+    //     int index = -1;
+    //     for (int i = 0; i < ans.size(); i++) {
+    //         if (ans.get(i) == x) {
+    //             index = i;
+    //             break;
+    //         }
+    //     }
+    
+    //     if (index >= 0 && index < ans.size() - 1) {
+    //         return ans.get(index + 1);
+    //     } else {
+    //         return null; // There is no inorder successor
+    //     }
+// }
+
+// ArrayList<Node> inorder(Node root) {
+//     ArrayList<Node> ans = new ArrayList<>();
+//     if (root == null) {
+//         return ans;
+//     }
+
+//     if (root.left != null) {
+//         ans.addAll(inorder(root.left));
+//     }
+
+//     ans.add(root);
+
+//     if (root.right != null) {
+//         ans.addAll(inorder(root.right));
+//     }
+
+//     return ans;
+// }
+
+
+    public Node inorderSuccessor(Node root, Node x) {
+        
+        Node ans= null;
+        while(root!=null){
+            if(root.data>x.data){
+                ans= root;
+                root= root.left;
+            }else{
+                
+                root= root.right;
+            }
         }
-    }
-
-    if (index >= 0 && index < ans.size() - 1) {
-        return ans.get(index + 1);
-    } else {
-        return null; // There is no inorder successor
-    }
-}
-
-ArrayList<Node> inorder(Node root) {
-    ArrayList<Node> ans = new ArrayList<>();
-    if (root == null) {
         return ans;
+        
     }
 
-    if (root.left != null) {
-        ans.addAll(inorder(root.left));
-    }
-
-    ans.add(root);
-
-    if (root.right != null) {
-        ans.addAll(inorder(root.right));
-    }
-
-    return ans;
-}
 
 
 }
