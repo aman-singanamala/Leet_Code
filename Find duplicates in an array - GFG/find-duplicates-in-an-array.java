@@ -55,7 +55,7 @@ class Solution {
                 ans.add(-1);
             }
             
-            ans.sort(null);
+            Collections.sort(ans);
             return ans;
         
     }
