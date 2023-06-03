@@ -34,23 +34,21 @@ class Solution
     static int majorityElement(int a[], int size)
     {
         // your code here
-       HashMap<Integer, Integer> map = new HashMap<>();
+       
 
-        for (int i = 0; i < size; i++) {
-            if (map.containsKey(a[i])) {
-                map.put(a[i], map.get(a[i]) + 1);
-            } else {
-                map.put(a[i], 1);
-            }
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int num : a) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
         int maxCount = 0;
         int majorityElement = -1;
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            int count = entry.getValue();
+        for (int num : a) {
+            int count = map.get(num);
             if (count > maxCount) {
                 maxCount = count;
-                majorityElement = entry.getKey();
+                majorityElement = num;
             }
         }
 
