@@ -53,23 +53,35 @@ class Solution {
     // Function to return the count of the number of elements in
     // the intersection of two arrays.
     public static int NumberofElementsInIntersection(int a[], int b[], int n, int m) {
-    HashSet<Integer> set = new HashSet<>();
-    
-    // Add elements from array 'a' to the HashSet
-    for (int i = 0; i < n; i++) {
-        set.add(a[i]);
-    }
-    
+        Arrays.sort(a); // Sort array a in ascending order
+    Arrays.sort(b); // Sort array b in ascending order
+
     int count = 0;
-    
-    // Check for intersection with elements from array 'b'
-    for (int i = 0; i < m; i++) {
-        if (set.contains(b[i])) {
-            count++;
-            set.remove(b[i]); // Remove the element from the set to avoid duplicates
+    int i = 0; // Pointer for array a
+    int j = 0; // Pointer for array b
+
+    while (i < n && j < m) {
+        if (a[i] < b[j]) {
+            i++; // Increment pointer i if a[i] is less than b[j]
+        } else if (a[i] > b[j]) {
+            j++; // Increment pointer j if a[i] is greater than b[j]
+        } else {
+            count++; // Increment count if a[i] is equal to b[j]
+            i++; // Move both pointers forward to check the next elements
+            j++;
+
+            // Skip duplicates in array a
+            while (i < n && a[i] == a[i - 1]) {
+                i++;
+            }
+
+            // Skip duplicates in array b
+            while (j < m && b[j] == b[j - 1]) {
+                j++;
+            }
         }
     }
-    
+
     return count;
 }
 };
