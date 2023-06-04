@@ -53,27 +53,23 @@ class Solution {
     // Function to return the count of the number of elements in
     // the intersection of two arrays.
     public static int NumberofElementsInIntersection(int a[], int b[], int n, int m) {
-        // Your code here
-        
-        HashSet<Integer> setA = new HashSet<>();
-        HashSet<Integer> setB = new HashSet<>();
-        
-        for (int i = 0; i < n; i++) {
-            setA.add(a[i]);
-        }
-        
-        for (int i = 0; i < m; i++) {
-            setB.add(b[i]);
-        }
-        
-        int count = 0;
-        for (int num : setA) {
-            if (setB.contains(num)) {
-                count++;
-            }
-        }
-        
-        return count;
-        
+    HashSet<Integer> set = new HashSet<>();
+    
+    // Add elements from array 'a' to the HashSet
+    for (int i = 0; i < n; i++) {
+        set.add(a[i]);
     }
+    
+    int count = 0;
+    
+    // Check for intersection with elements from array 'b'
+    for (int i = 0; i < m; i++) {
+        if (set.contains(b[i])) {
+            count++;
+            set.remove(b[i]); // Remove the element from the set to avoid duplicates
+        }
+    }
+    
+    return count;
+}
 };
