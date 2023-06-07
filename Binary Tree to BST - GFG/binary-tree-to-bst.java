@@ -126,11 +126,6 @@ class Solution
        
        return arrayToBSTHelper(inorder, 0, inorder.length-1);
     }
-    
-    
-    
-    
-    
     private Node arrayToBSTHelper(int[] nums,int left, int right){
         if(left>right){
             return null; 
