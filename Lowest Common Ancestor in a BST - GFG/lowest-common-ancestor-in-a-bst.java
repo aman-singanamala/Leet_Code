@@ -120,32 +120,24 @@ class GfG {
 class BST
 {   
     //Function to find the lowest common ancestor in a BST. 
-	Node LCA(Node root, int n1, int n2) {
-        if (root == null) {
-            return null;
-        }
-
-        // If either n1 or n2 is found, return the current root
-        if (root.data == n1 || root.data == n2) {
+	Node LCA(Node root, int n1, int n2)
+	{
+        // code here.  
+        if(root==null || root.data ==n1 || root.data ==n2){
             return root;
-        }
-
-        // Recursively find the LCA in the left and right subtrees
-        Node leftLCA = LCA(root.left, n1, n2);
-        Node rightLCA = LCA(root.right, n1, n2);
-
-        // If both leftLCA and rightLCA are not null, it means n1 and n2 are present
-        // in different subtrees, so the current root is the LCA
-        if (leftLCA != null && rightLCA != null) {
-            return root;
-        } else if (leftLCA != null) {
-            // If only leftLCA is not null, return leftLCA
-            return leftLCA;
-        } else {
-            // If only rightLCA is not null, return rightLCA
-            return rightLCA;
         }
         
+        Node left= LCA(root.left, n1, n2);
+        Node right= LCA(root.right, n1, n2);
+        
+        if(left==null){
+            return right;
+        }else if(right==null){
+            return left;
+        }else{
+            return root;
+        }
+        
+    }
     
-}
 }
