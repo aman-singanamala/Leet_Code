@@ -76,17 +76,19 @@ class Solution
         }
         Node curr= head;
         Node prev= null;
-        Node next = curr.next;
+        Node next= curr.next;
         
         while(curr!=null){
             curr.next=prev;
             prev=curr;
             curr=next;
             if(next!=null){
-                next= next.next;
+                next=next.next;
             }
         }
         
         return prev;
+        
+        
     }
 }
