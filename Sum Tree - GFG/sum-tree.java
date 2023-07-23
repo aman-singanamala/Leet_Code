@@ -114,26 +114,30 @@ class Node
     }
 }
 */
-class Solution {
-    boolean isSumTree(Node root) {
-        if (root == null || isLeaf(root)) {
-            return true;
-        }
-
-        int leftSum = sum(root.left);
-        int rightSum = sum(root.right);
-
-        return root.data == leftSum + rightSum && isSumTree(root.left) && isSumTree(root.right);
+class Solution
+{
+    static boolean isLeaf(Node root) {
+        return root != null && root.left == null && root.right == null;
     }
 
-    boolean isLeaf(Node node) {
-        return node != null && node.left == null && node.right == null;
-    }
-
-    int sum(Node node) {
-        if (node == null) {
+    static int subSumTree(Node root) {
+        if (root == null) {
             return 0;
         }
-        return sum(node.left) + node.data + sum(node.right);
+        int leftSum = subSumTree(root.left);
+        int rightSum = subSumTree(root.right);
+        return root.data + leftSum + rightSum;
+    }
+
+    static boolean isSumTree(Node root){
+        if(root==null || isLeaf(root)){
+            return true;
+        }
+        int leftSubTree= subSumTree(root.left);
+        int rightSubTree= subSumTree(root.right);
+
+        return (root.data == leftSubTree + rightSubTree) && isSumTree(root.left) && isSumTree(root.right);
+
+
     }
 }
