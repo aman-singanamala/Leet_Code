@@ -131,10 +131,6 @@ class Solution {
         int lh= height(node.left);
         int rh= height(node.right);
         
-        return 1+ Math.max(lh,rh);
-        
-        
-        
-        
+        return Math.max(lh, rh)+1;
     }
 }
