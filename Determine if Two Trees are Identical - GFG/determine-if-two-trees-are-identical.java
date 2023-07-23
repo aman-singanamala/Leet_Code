@@ -136,7 +136,7 @@ class Solution
 	    // Code Here
 	    if(root1==null && root2==null){
 	        return true;
-	    }else if (root1==null || root2==null){
+	    }else if(root1==null || root2==null){
 	        return false;
 	    }
 	    
@@ -144,11 +144,7 @@ class Solution
 	        return false;
 	    }
 	    
-	    
-	    boolean leftSubTree= isIdentical(root1.left, root2.left);
-	    boolean rightSubTree= isIdentical(root1.right, root2.right);
-	    
-	    return leftSubTree& rightSubTree;
+	    return isIdentical(root1.left, root2.left) && isIdentical(root1.right, root2.right);
 	}
 	
 }
