@@ -113,8 +113,8 @@ class Solution {
     // Function to return a list containing the inorder traversal of the tree.
     ArrayList<Integer> inOrder(Node root) {
         // Code
-        
         ArrayList<Integer> inorder= new ArrayList<>();
+        
         if(root==null){
             return inorder;
         }
@@ -122,9 +122,9 @@ class Solution {
         inorder.addAll(inOrder(root.left));
         inorder.add(root.data);
         inorder.addAll(inOrder(root.right));
-        return inorder;
         
+        return inorder;
     }
     
-    
+
 }
