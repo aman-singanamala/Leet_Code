@@ -30,28 +30,23 @@ class Solution
     // arr[]: input array
     // n: size of the array
     //Function to find triplets with zero sum.
-	public boolean findTriplets(int arr[] , int n)
-    {
-        //add code here.
-        Arrays.sort(arr); // Sort the array in ascending order
+	public boolean findTriplets(int arr[], int n) {
+        Arrays.sort(arr);
 
-        for (int i = 0; i < n - 2; i++) {
-            int left = i + 1;
-            int right = n - 1;
-
-            while (left < right) {
-                int sum = arr[i] + arr[left] + arr[right];
-
-                if (sum == 0) {
-                    return true; // Triplet with zero sum found
-                } else if (sum < 0) {
-                    left++;
+        for (int i = 0; i < n; i++) {
+            int x = arr[i];
+            int start = i + 1;
+            int end = n - 1;
+            while (start < end) {
+                if (x + arr[start] + arr[end] == 0) {
+                    return true;
+                } else if (x + arr[start] + arr[end] < 0) {
+                    start++;
                 } else {
-                    right--;
+                    end--;
                 }
             }
         }
-
         return false; // No triplet with zero sum found
     }
 }
