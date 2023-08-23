@@ -51,23 +51,24 @@ class Solution{
     static long countSubarrays(int a[], int n, int L, int R)  
     { 
         // Complete the function
-        int i=0;
-        int j=0;
-        int count=0;
-        int valid=0;
-        while(j<n){
-            if(a[j]>R){
-                valid=0;
-                i=j+1;
-            }else if(a[j]>=L && a[j]<=R){
-                valid= j-i+1;
+        int i = 0;
+        int j = 0;
+        int count = 0;
+        int valid = 0;
+        
+        while (j < n) {
+            if (a[j] >= L && a[j] <= R) {
+                valid = j - i + 1;
+            } else if (a[j] > R) {
+                valid = 0;
+                i = j + 1;
             }
             
-            count+=valid;
+            count += valid;
             j++;
         }
         
-        return (long)count;
+        return (long) count;
     } 
 }
 
