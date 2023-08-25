@@ -96,6 +96,8 @@ class GFG
 // } Driver Code Ends
 
 
+
+
 /*
 class Node
 {
@@ -116,7 +118,7 @@ class Solution
         Node prev= null;
         
         while(fast!=null && fast.next!=null){
-            prev= slow;
+             prev= slow;
             slow= slow.next;
             fast= fast.next.next;
             
