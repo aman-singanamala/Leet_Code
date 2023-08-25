@@ -100,30 +100,30 @@ class Solution
     //Function to find the data of nth node from the end of a linked list.
     int getNthFromLast(Node head, int n)
     {
-    	// Your code here
-    	int size= getsize(head);
-    	if(n<=0 || n> size){
-    	    return -1;
-    	}
+    	// Your code here	
+    	int size= getSize(head);
+    	
+        
+        if (n <= 0 || n > size) {
+            return -1; // Invalid input
+        }
+    	int k= Math.abs(n-size);
     	Node curr= head;
-    	int k= size-n;
-    	while(k>0){
+    	for(int i=0;i<k;i++){
     	    curr= curr.next;
-    	    k--;
+    	   
     	}
     	return curr.data;
-    	
     }
     
-    int getsize(Node head){
-        Node curr=head;
+    public static int getSize(Node head){
         int size=0;
+        Node curr= head;
         while(curr!=null){
-            curr=curr.next;
             size++;
+            curr= curr.next;
         }
         
         return size;
-        
     }
 }
