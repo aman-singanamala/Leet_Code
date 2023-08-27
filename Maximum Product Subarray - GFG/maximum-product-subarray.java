@@ -23,19 +23,30 @@ import java.util.*;
 
 // } Driver Code Ends
 
-
 class Solution {
     // Function to find maximum product subarray
     long maxProduct(int[] arr, int n) {
-        // code here
-       long ans= Long.MIN_VALUE;
-       for(int i=0;i<n;i++){
-           long curr= 1;
-           for(int j=i;j<n;j++){
-               curr*= arr[j];
-               ans= Math.max(ans, curr);
-           }
-       }
-       return ans;
+        long pre = 1; // Initialize prefix product as 1
+        long suff = 1; // Initialize suffix product as 1
+        long maxProduct = Long.MIN_VALUE; // Initialize maxProduct to the smallest possible value
+        
+        for (int i = 0; i < n; i++) {
+            // Handle cases where previous or suffix product becomes 0
+            if (pre == 0) {
+                pre = 1;
+            }
+            if (suff == 0) {
+                suff = 1;
+            }
+            
+            // Multiply current element with pre and suffix products
+            pre *= arr[i];
+            suff *= arr[n - i - 1];
+            
+            // Update maxProduct with the maximum among previous answer, pre, and suff
+            maxProduct = Math.max(maxProduct, Math.max(pre, suff));
+        }
+        
+        return maxProduct;
     }
 }
