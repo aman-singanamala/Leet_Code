@@ -40,28 +40,53 @@ class Solution{
     // Function to find the trapped water between the blocks.
     static long trappingWater(int arr[], int n) { 
         // Your code here
-         int[] leftMax = new int[n];
-        int[] rightMax = new int[n];
+        //  int[] leftMax = new int[n];
+        // int[] rightMax = new int[n];
         
-        // Calculate the maximum height of blocks to the left of each position
-        leftMax[0] = arr[0];
-        for (int i = 1; i < n; i++) {
-            leftMax[i] = Math.max(leftMax[i - 1], arr[i]);
+        // // Calculate the maximum height of blocks to the left of each position
+        // leftMax[0] = arr[0];
+        // for (int i = 1; i < n; i++) {
+        //     leftMax[i] = Math.max(leftMax[i - 1], arr[i]);
+        // }
+        
+        // // Calculate the maximum height of blocks to the right of each position
+        // rightMax[n - 1] = arr[n - 1];
+        // for (int i = n - 2; i >= 0; i--) {
+        //     rightMax[i] = Math.max(rightMax[i + 1], arr[i]);
+        // }
+        
+        // // Calculate trapped water at each position
+        // long trappedWater = 0;
+        // for (int i = 0; i < n; i++) {
+        //     trappedWater += Math.min(leftMax[i], rightMax[i]) - arr[i];
+        // }
+        
+        // return trappedWater;
+        
+        int left=0;
+        int right=n-1;
+        int leftmax=0;
+        int rightmax=0;
+        long ans= 0;
+        while(left<=right){
+            if(arr[left]<arr[right]){
+                if(arr[left]>leftmax){
+                    leftmax= arr[left];
+                }else{
+                    ans+= leftmax-arr[left];
+                }
+                left++;
+            }else{
+                if(arr[right]> rightmax){
+                    rightmax= arr[right];
+                }else{
+                    ans+= rightmax- arr[right];
+                }
+                right--;
+            }
         }
         
-        // Calculate the maximum height of blocks to the right of each position
-        rightMax[n - 1] = arr[n - 1];
-        for (int i = n - 2; i >= 0; i--) {
-            rightMax[i] = Math.max(rightMax[i + 1], arr[i]);
-        }
-        
-        // Calculate trapped water at each position
-        long trappedWater = 0;
-        for (int i = 0; i < n; i++) {
-            trappedWater += Math.min(leftMax[i], rightMax[i]) - arr[i];
-        }
-        
-        return trappedWater;
+        return ans;
     } 
 }
 
