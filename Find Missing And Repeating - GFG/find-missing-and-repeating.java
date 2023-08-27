@@ -28,61 +28,34 @@ class GFG {
 
 
 // User function Template for Java
+
 class Solve {
     int[] findTwoElement(int arr[], int n) {
-        int[] ans = new int[2];
-        int sumN = n * (n + 1) / 2;
-        int arrSum = 0;
-        
+        int[] result = new int[2];
+
+        // Perform cyclic sort
         for (int i = 0; i < n; i++) {
-            arrSum += arr[i];
-        }
-        
-        int diff = sumN - arrSum; // Calculate the missing number
-        
-        // Find the two elements that sum up to 'diff'
-        int xor = 0;
-        for (int i = 0; i < n; i++) {
-            xor ^= arr[i];
-        }
-        for (int i = 1; i <= n; i++) {
-            xor ^= i;
-        }
-        
-        // 'xor' now contains the XOR of the two missing elements
-        // Find the rightmost set bit in 'xor'
-        int rightmostSetBit = xor & -xor;
-        
-        int num1 = 0, num2 = 0;
-        for (int i = 0; i < n; i++) {
-            if ((arr[i] & rightmostSetBit) == 0) {
-                num1 ^= arr[i];
-            } else {
-                num2 ^= arr[i];
+            while (arr[i] != i + 1) {
+                // Check for the repeating number
+                if (arr[i] == arr[arr[i] - 1]) {
+                    result[0] = arr[i];
+                    break;
+                }
+                // Swap the numbers to their correct positions
+                int temp = arr[i];
+                arr[i] = arr[temp - 1];
+                arr[temp - 1] = temp;
             }
         }
-        for (int i = 1; i <= n; i++) {
-            if ((i & rightmostSetBit) == 0) {
-                num1 ^= i;
-            } else {
-                num2 ^= i;
-            }
-        }
-        
-        // Check which number is missing from the array and assign it to 'ans'
+
+        // Find the missing number
         for (int i = 0; i < n; i++) {
-            if (arr[i] == num1) {
-                ans[0] = num1;
-                ans[1] = num2;
-                break;
-            }
-            if (arr[i] == num2) {
-                ans[0] = num2;
-                ans[1] = num1;
+            if (arr[i] != i + 1) {
+                result[1] = i + 1;
                 break;
             }
         }
-        
-        return ans;
+
+        return result;
     }
 }
