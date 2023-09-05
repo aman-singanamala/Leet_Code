@@ -110,6 +110,8 @@ class GfG {
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 
 /*Complete the function below
@@ -143,24 +145,7 @@ class Solution
     //     }
 // }
 
-// ArrayList<Node> inorder(Node root) {
-//     ArrayList<Node> ans = new ArrayList<>();
-//     if (root == null) {
-//         return ans;
-//     }
 
-//     if (root.left != null) {
-//         ans.addAll(inorder(root.left));
-//     }
-
-//     ans.add(root);
-
-//     if (root.right != null) {
-//         ans.addAll(inorder(root.right));
-//     }
-
-//     return ans;
-// }
 
 
     public Node inorderSuccessor(Node root, Node x) {
