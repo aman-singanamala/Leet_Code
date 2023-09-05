@@ -123,13 +123,11 @@ class Tree {
             return -1;
         }
         
-        if(node.left==null){
-            return node.data;
-        }
         
         while(node.left!=null){
             node = node.left;
         }
+        
         return node.data;
     }
 }
