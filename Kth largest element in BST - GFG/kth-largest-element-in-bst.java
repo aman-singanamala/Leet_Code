@@ -114,26 +114,32 @@ class Node
     }
 }
 */
-class Solution
-{
-    // return the Kth largest element in the given BST rooted at 'root'
-    public int kthLargest(Node root,int K)
-    {
-        //Your code here
-        ArrayList<Integer> inorder= inorderT(root);
-        return inorder.get(inorder.size()-K);
-        
-    }
-    
-    public ArrayList<Integer> inorderT(Node root){
-        ArrayList<Integer> inorder= new ArrayList<>();
-        if(root==null){
-            return inorder;
+class Solution {
+    public int kthLargest(Node root, int K) {
+        if (root == null || K <= 0) {
+            return -1; // Invalid input
         }
-        
-        inorder.addAll(inorderT(root.left));
-        inorder.add(root.data);
-        inorder.addAll(inorderT(root.right));
-        return inorder;
+
+        Stack<Node> stack = new Stack<>();
+        Node current = root;
+        int count = 0;
+
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                stack.push(current);
+                current = current.right; // Traverse the right subtree
+            }
+
+            current = stack.pop();
+            count++;
+
+            if (count == K) {
+                return current.data; // Found the Kth largest element
+            }
+
+            current = current.left; // Traverse the left subtree
+        }
+
+        return -1; // If K is greater than the number of elements in the BST
     }
 }
