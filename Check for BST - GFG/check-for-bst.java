@@ -113,23 +113,23 @@ class GfG {
 //User function Template for Java
 
 
-public class Solution
-{
-    //Function to check whether a Binary Tree is BST or not.
+class Solution {
+    // Function to check whether a Binary Tree is BST or not.
     boolean isBST(Node root) {
-        return isBSTHELPER(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return isBSTHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
-    
-    // Utility function to check if a binary tree satisfies the BST property.
-    boolean isBSTHELPER(Node root, int min, int max){
-        if(root==null){
-            return true;
+
+    // Helper function to check if the tree rooted at 'root' is a BST
+    static boolean isBSTHelper(Node root, int min, int max) {
+        if (root == null) {
+            return true; // An empty tree is a valid BST
         }
-        
-        if(root.data<=min || root.data>=max){
-            return false;
+
+        if (root.data < min || root.data > max) {
+            return false; // Node value is not within the valid range
         }
-        
-        return isBSTHELPER(root.left, min, root.data) && isBSTHELPER(root.right, root.data, max);
+
+        // Recursively check left and right subtrees with updated min and max values
+        return isBSTHelper(root.left, min, root.data - 1) && isBSTHelper(root.right, root.data + 1, max);
     }
 }
