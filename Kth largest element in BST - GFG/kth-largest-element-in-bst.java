@@ -124,20 +124,19 @@ class Solution {
         Node current = root;
         int count = 0;
 
-        while (current != null || !stack.isEmpty()) {
-            while (current != null) {
+        while(current!=null || !stack.isEmpty()){
+            while(current!=null){
                 stack.push(current);
-                current = current.right; // Traverse the right subtree
+                current= current.right;
             }
-
-            current = stack.pop();
+            
+            current= stack.pop();
             count++;
-
-            if (count == K) {
-                return current.data; // Found the Kth largest element
+            if(count==K){
+                return current.data;
             }
-
-            current = current.left; // Traverse the left subtree
+            
+            current= current.left;
         }
 
         return -1; // If K is greater than the number of elements in the BST
