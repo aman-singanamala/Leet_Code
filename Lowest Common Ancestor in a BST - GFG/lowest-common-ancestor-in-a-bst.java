@@ -113,6 +113,8 @@ class GfG {
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 
 
@@ -122,8 +124,8 @@ class BST
     //Function to find the lowest common ancestor in a BST. 
 	Node LCA(Node root, int n1, int n2)
 	{
-        // code here.  
-        if(root==null || root.data ==n1 || root.data ==n2){
+        // code here.   
+        if(root==null || root.data==n1 || root.data==n2){
             return root;
         }
         
@@ -137,7 +139,9 @@ class BST
         }else{
             return root;
         }
-        
     }
+    
+    
+    
     
 }
