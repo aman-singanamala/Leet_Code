@@ -51,12 +51,17 @@ class Solution
 	// n: size of array a[]
 	public int peakElement(int[] arr,int n)
     {
-       //add code here.
-       for(int i=0;i<n;i++){
-           if((i==0|| arr[i]>= arr[i-1]) && (i==n-1 || arr[i]>= arr[i+1])){
-               return i;
-           }
-       } 
-       return -1;
+        int left=0;
+        int right= n-1;
+        while(left<right){
+            int mid= left+(right-left)/2;
+            if(arr[mid]> arr[mid+1]){
+                right= mid;
+            }else{
+                left=mid+1;
+            }
+        }
+        
+        return left;
     }
 }
