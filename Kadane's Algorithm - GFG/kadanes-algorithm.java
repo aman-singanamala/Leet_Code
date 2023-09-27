@@ -38,37 +38,16 @@ class Solution{
     //Function to find the sum of contiguous subarray with maximum sum.
     long maxSubarraySum(int arr[], int n){
         
-        // long currentSum = arr[0]; // Initialize currentSum with the first element
-
-        // // Traverse the array starting from the second element
-        // for (int i = 1; i < n; i++) {
-        //     // Calculate the current sum for the subarray ending at index i
-        //     currentSum = Math.max(arr[i], currentSum + arr[i]);
-
-        //     // Update the maximum sum if the current sum is greater
-        //     maxSum = Math.max(maxSum, currentSum);
-        // }
-
-        // return maxSum;long maxSum = arr[0]; // Initialize maxSum with the first element
+        // Your code here
+        long currMax=arr[0];
         
-        long maxSum = arr[0]; // Initialize maxSum with the first element
-        long currentSum = arr[0]; // Initialize currentSum with the first element
+        long gmax= arr[0];
         for(int i=1;i<n;i++){
-            currentSum+= arr[i];
-            if(arr[i]>currentSum){
-            currentSum= arr[i];
+            currMax= Math.max(arr[i], arr[i]+ currMax);
+            gmax= Math.max(gmax, currMax);
         }
         
-            if(currentSum>maxSum){
-                maxSum= currentSum;
-            }
-        }
-        
-        
-        
-        return maxSum;
-        
-        
+        return gmax;
         
     }
     
