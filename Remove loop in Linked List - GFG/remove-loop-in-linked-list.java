@@ -98,6 +98,8 @@ class GFG
 
 
 
+
+
 /*
 class Node
 {
@@ -118,7 +120,7 @@ class Solution
         Node prev= null;
         
         while(fast!=null && fast.next!=null){
-             prev= slow;
+            prev= slow;
             slow= slow.next;
             fast= fast.next.next;
             
@@ -139,4 +141,5 @@ class Solution
             prev.next=null;
         }
     }
+    
 }
