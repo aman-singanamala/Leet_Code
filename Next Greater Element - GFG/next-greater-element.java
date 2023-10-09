@@ -33,25 +33,23 @@ class Solution
 {
     //Function to find the next greater element for each element of the array.
     public static long[] nextLargerElement(long[] arr, int n)
-    { 
-        // Your code here
-        long[] result = new long[n];
-    Stack<Integer> stack = new Stack<>();
-
-    // Initialize the result array with -1 as the default value
-    for (int i = 0; i < n; i++) {
-        result[i] = -1;
-    }
-
-    // Iterate through the array from left to right
-    for (int i = 0; i < n; i++) {
-        while (!stack.isEmpty() && arr[i] > arr[stack.peek()]) {
-            int index = stack.pop();
-            result[index] = arr[i];
+    { long[] result = new long[n];
+    Stack<Long> stack = new Stack<>();
+    
+    for (int i = n-1; i>=0; i--) {
+        while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+            stack.pop();
         }
-        stack.push(i);
+        
+        if (!stack.isEmpty()) {
+            result[i] = stack.peek();
+        } else {
+            result[i] = -1;
+        }
+        
+        stack.push(arr[i]);
     }
-
+    
     return result;
     } 
 }
